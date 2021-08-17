@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="messages"></div>
+    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <canvas id="myChart"></canvas>
+    </div>
+    <!-- <canvas id="myChart" width="90000" height="90000"></canvas> -->
+    <script>
+        var data = ''
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['eth', 'btc', 'eos', 'xrp', 'ltc'],
+                datasets: [{
+                    label: '# Valores',
+                    data: [0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+
+        });
+
+        // const config = {
+        //     type: 'realtime',
+        //     data,
+        //     options: {}
+        // };
+
+        var pointer = 0
+        let socket = new WebSocket('ws://localhost:3001')
+        socket.onmessage = function(msg) {
+            const teste = document.querySelector('#messages')
+            teste.innerHTML = `<div>${msg.data}</div>`;
+            var partes = (msg.data.split(':'))
+            pointer + 1
+            console.log(partes[0])
+            if (partes[1] === 'eth') {
+
+                myChart.data.datasets[0].data[0] = myChart.data.datasets[0].data[0] + parseInt(partes[0])
+                pointer + 1
+                if (pointer === 1000000)
+                    pointer = 0
+                myChart.update()
+            } else
+            if (partes[1] === 'btc') {
+                myChart.data.datasets[0].data[1] = myChart.data.datasets[0].data[1] + parseInt(partes[0])
+                pointer + 1
+                if (pointer === 1000000) {
+                    pointer = 0
+                    myChart.update()
+                }
+
+            } else
+            if (partes[1] === 'eos') {
+                myChart.data.datasets[0].data[2] = myChart.data.datasets[0].data[2] + parseInt(partes[0])
+                pointer + 1
+                if (pointer === 1000000) {
+                    pointer = 0
+                    myChart.update()
+                }
+            } else
+            if (partes[1] === 'xrp') {
+                myChart.data.datasets[0].data[3] = myChart.data.datasets[0].data[3] + parseInt(partes[0])
+                pointer + 1
+                if (pointer == 1000000) {
+                    pointer = 0
+                    myChart.update()
+                }
+
+            } else
+            if (partes[1] === 'ltc') {
+                myChart.data.datasets[0].data[4] = myChart.data.datasets[0].data[4] + parseInt(partes[0])
+                pointer + 1
+                if (pointer == 1000000) {
+                    pointer = 0
+                    myChart.update()
+                }
+            }
+        };
+    </script>
+
+</body>
+
+</html>

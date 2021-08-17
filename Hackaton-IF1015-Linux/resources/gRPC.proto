@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package dataStreamPackage;
+
+service DataStream {
+	rpc layline(stream EmptyMessage) returns (stream Data){}
+}
+
+message Data {
+    string line = 1;
+}
+
+message EmptyMessage {}

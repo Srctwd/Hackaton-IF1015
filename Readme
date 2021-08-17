@@ -5,3 +5,7 @@ npm install express
 npm i ws
 npm i @grpc/proto-loader
 npm i chartjs
+
+Próximo passo
+
+extrair o aquivo 00-comprimido na pasta trades
