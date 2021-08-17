@@ -59,48 +59,61 @@
             teste.innerHTML = `<div>${msg.data}</div>`;
             var partes = (msg.data.split(':'))
             pointer + 1
-            console.log(partes[0])
+
+
+            console.log('$$$$$$$', pointer)
             if (partes[1] === 'eth') {
 
                 myChart.data.datasets[0].data[0] = myChart.data.datasets[0].data[0] + parseInt(partes[0])
-                pointer + 1
-                if (pointer === 1000000)
+                pointer += 1
+
+                if (pointer > 1000) {
                     pointer = 0
-                myChart.update()
-            } else
+                    myChart.update()
+                }
+            }
             if (partes[1] === 'btc') {
                 myChart.data.datasets[0].data[1] = myChart.data.datasets[0].data[1] + parseInt(partes[0])
-                pointer + 1
-                if (pointer === 1000000) {
+                pointer += 1
+
+                if (pointer > 1000) {
                     pointer = 0
+                    console.log('entrou')
                     myChart.update()
                 }
 
-            } else
+            }
             if (partes[1] === 'eos') {
                 myChart.data.datasets[0].data[2] = myChart.data.datasets[0].data[2] + parseInt(partes[0])
-                pointer + 1
-                if (pointer === 1000000) {
+                pointer += 1
+
+                if (pointer > 1000) {
                     pointer = 0
                     myChart.update()
                 }
-            } else
+            }
             if (partes[1] === 'xrp') {
                 myChart.data.datasets[0].data[3] = myChart.data.datasets[0].data[3] + parseInt(partes[0])
-                pointer + 1
-                if (pointer == 1000000) {
+                pointer += 1
+
+                if (pointer > 1000) {
                     pointer = 0
                     myChart.update()
+
+
                 }
 
-            } else
+            }
             if (partes[1] === 'ltc') {
                 myChart.data.datasets[0].data[4] = myChart.data.datasets[0].data[4] + parseInt(partes[0])
-                pointer + 1
-                if (pointer == 1000000) {
+                pointer += 1
+
+                if (pointer > 1000000) {
                     pointer = 0
                     myChart.update()
+
                 }
+
             }
         };
     </script>
