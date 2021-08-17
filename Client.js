@@ -14,10 +14,10 @@ const client = new dataStreamPackage.DataStream("localhost:40000", grpc.credenti
 
 const call = client.layline();
 call.on("data", data => {
-  var splitando = data.line.split(',')
-  sockets.forEach(socket => socket.send(splitando[3]+':'+splitando[5]));
-    console.log(splitando[3]+': '+splitando[5])
-    
+    var splitando = data.line.split(',')
+    sockets.forEach(socket => socket.send(splitando[3] + ':' + splitando[5]));
+    console.log(splitando[3] + ': ' + splitando[5])
+
 })
 
 call.on("end", e => console.log("server done!"))
@@ -37,10 +37,10 @@ call.on("end", e => console.log("server done!"))
 // events that come in.
 const wsServer = new ws.Server({ noServer: true });
 wsServer.on('connection', socket => {
-  socket.on('message', message => console.log(message)); // guardar o socket em sockets [] // itera no array de sockets na linha 17 para enviar para o html - socket.send 
-  
-  sockets.push(socket)
-  console.log("Conectado")
+    socket.on('message', message => console.log(message)); // guardar o socket em sockets [] // itera no array de sockets na linha 17 para enviar para o html - socket.send 
+
+    sockets.push(socket)
+    console.log("Conectado")
 });
 
 const server = app.listen(3001, () => {
@@ -48,13 +48,13 @@ const server = app.listen(3001, () => {
 });
 
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + "\\resources\\grafico\\index.html");
+    res.sendFile(__dirname + "\\resources\\grafic\\index.html");
 });
 
 
 
 server.on('upgrade', (request, socket, head) => {
     wsServer.handleUpgrade(request, socket, head, socket => {
-      wsServer.emit('connection', socket, request);
+        wsServer.emit('connection', socket, request);
     });
-  });
+});
