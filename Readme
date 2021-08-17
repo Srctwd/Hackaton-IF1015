@@ -8,4 +8,4 @@ npm i chartjs
 
 Próximo passo
 
-extrair o aquivo 00-comprimido na pasta trades
+extrair o aquivo 00-comprimido na pasta trades e após a extração coloque o arquivo 00.part dentro da pasta trades
