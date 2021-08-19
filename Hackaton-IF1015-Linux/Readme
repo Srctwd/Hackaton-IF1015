@@ -2,6 +2,7 @@
 Para rodar o projeto são necessárias as seguintes instalações
 
 npm i 
+npm i grpc
 npm install express
 npm i ws
 npm i @grpc/proto-loader
